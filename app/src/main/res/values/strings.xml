@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Set-Books</string>
+    <string name="hintEmail">Enter your Email</string>
+    <string name="hintPassword">Enter your 4-Digit PIN</string>
+    <string name="loginButtonText">Login Now</string>
+    <string name="appheading">My Driver</string>
+    <string name="title_activity_books_fragment">Account</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Settings</string>
+    <string name="title_notifications">Notifications</string>
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/l4"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:id="@+id/layout2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:textColor="@color/mybutton1"
+            android:id="@+id/loading1"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress1"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/layout3"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment"
+            android:textColor="@color/mybutton1"
+            android:padding="20dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="50 kES"
+            android:textColor="@color/black"
+            android:padding="20dp"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:id="@+id/payingFor"
+            android:textAlignment="center"/>
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30 kES"
+            android:textColor="@color/black"
+            android:padding="20dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Make Payment and Get Full Access"
+            android:textColor="@color/black"
+            android:padding="20dp"
+            android:textSize="10sp"
+            android:textAlignment="center"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/payphoneNoLayout"
+            android:hint="Enter MPESA PhoneNo. 2547XXXXXXXX"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/payphoneNo"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress"
+            android:progressBackgroundTint="@color/mybutton1"
+            android:visibility="gone"
+            android:layout_margin="3dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMakePayment"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            android:layout_margin="3dp"
+            android:text="Proceed.."
+            android:backgroundTint="@color/mybutton1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:padding="20dp"
+            android:visibility="gone"
+            android:textSize="10sp"
+            android:id="@+id/info"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
