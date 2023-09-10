@@ -6,6 +6,40 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 class RestApiService {
+    fun forgotChange(userData: ForgotChange, onResult: (LoginResp?) -> Unit){
+        val retrofit = ServiceBuilderLogin.buildService(RestApi::class.java)
+        retrofit.userChange(userData).enqueue(
+            object : Callback<LoginResp> {
+                override fun onFailure(call: Call<LoginResp>, t: Throwable) {
+                    println("Eroooooooooooooooo"+t.message)
+                    onResult(null)
+                }
+                override fun onResponse(call: Call<LoginResp>, response: Response<LoginResp>) {
+                    //val code = response.code()
+                    println(""+response.body())
+                    onResult(response.body())
+
+                }
+            }
+        )
+    }//End
+    fun forgotUser(userData: Forgot, onResult: (LoginResp?) -> Unit){
+        val retrofit = ServiceBuilderLogin.buildService(RestApi::class.java)
+        retrofit.userForgot(userData).enqueue(
+            object : Callback<LoginResp> {
+                override fun onFailure(call: Call<LoginResp>, t: Throwable) {
+                    println("Eroooooooooooooooo"+t.message)
+                    onResult(null)
+                }
+                override fun onResponse(call: Call<LoginResp>, response: Response<LoginResp>) {
+                    //val code = response.code()
+                    println(""+response.body())
+                    onResult(response.body())
+
+                }
+            }
+        )
+    }//End
     fun loginUser(userData: UserInfo, onResult: (LoginResp?) -> Unit){
         val retrofit = ServiceBuilderLogin.buildService(RestApi::class.java)
         retrofit.userLogin(userData).enqueue(

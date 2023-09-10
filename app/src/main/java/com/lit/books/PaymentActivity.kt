@@ -15,9 +15,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
+import com.lit.books.helpers.ApiHelper
 import com.lit.books.models.PaymentInfo
 import com.lit.books.services.RestApiService
 import kotlinx.android.synthetic.main.activity_payment.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class PaymentActivity : AppCompatActivity() {
@@ -36,13 +39,15 @@ class PaymentActivity : AppCompatActivity() {
         val info = findViewById<MaterialTextView>(R.id.info)
         info.visibility = View.GONE
 
-
         val layout3 = findViewById<LinearLayout>(R.id.layout3)
         val layout2 = findViewById<LinearLayout>(R.id.layout2)
         layout3.visibility = View.GONE
         layout2.visibility = View.VISIBLE
         val prefs1 = getSharedPreferences("storage", MODE_PRIVATE)
         val emailP = prefs1.getString("email", "")
+        val prefs2 = getSharedPreferences("store", MODE_PRIVATE)
+        val bCosti = prefs2.getString("book_cost", "")
+        bCost.text = "$bCosti KES"
 
         val prefs: SharedPreferences = getSharedPreferences(
             "store",
@@ -114,13 +119,9 @@ class PaymentActivity : AppCompatActivity() {
 
                     //access the saved product_name from preferences and put in the TextView
                     val title = prefs.getString("product_name", "")
-                    val services = prefs.getString("book_service", "")
-                    if (title!!.isEmpty() || services!!.isEmpty() ){
-
-                    }
-                    else {
-                        payingFor.text = "Buy: ${services} \nOf  BOOK TITLE: ${title}"
-                    }
+                    //val services = prefs.getString("book_service", "")
+                        payingFor.text = "25 Short Videos \n ${title}"
+                        payingFor1.text = "Themes,Styles,Characters"
 
                 }//end
 
@@ -135,11 +136,9 @@ class PaymentActivity : AppCompatActivity() {
         info.visibility = View.GONE
         //progress.progressTintList(ColorStateList.valueOf(Color.RED))
         progress.visibility = View.VISIBLE
-        btnMakePayment.text = "Complete Payment by\n Entering MPESA PIN on Pop Up Dialog"
+        btnMakePayment.text = "Complete Payment by\n Entering MPESA PIN on Pop Up Dialog \n If you do not receive the Pop up within 1 minute please press back and try Again. Thank you"
         btnMakePayment.isEnabled = false
 
-
-        val apiService = RestApiService()
         val prefs1 = getSharedPreferences("storage", MODE_PRIVATE)
         val emailP = prefs1.getString("email", "")
 
@@ -148,48 +147,92 @@ class PaymentActivity : AppCompatActivity() {
             Context.MODE_PRIVATE
         )
         val book_id = prefs.getString("book_id", "")
-        val userInfo = PaymentInfo(
-            userAmount = amount,
-            userPhone = phone,
-            userEmail = emailP,
-            userBookId = book_id)
-
-        apiService.paymentUser(userInfo) {
-            progress.visibility = View.GONE
-            btnMakePayment.text = "....Payment in Progress\n May take upto 2 minutes"
-            if(it == null){
-                Toast.makeText(applicationContext, "Connection Error, Please Check.", Toast.LENGTH_LONG).show()
-                btnMakePayment.text = "Proceed"
-                btnMakePayment.isEnabled = true
+        val url = "https://modcom.pythonanywhere.com/api/payment"
+        val body = JSONObject()
+        body.put("amount", amount)
+        body.put("phone", phone)
+        body.put("email", emailP)
+        body.put("book_id", book_id)
+        val helper = ApiHelper(applicationContext)
+        helper.post(url, body, object : ApiHelper.CallBack{
+            override fun onSuccess(result: JSONArray?) {
+                progress.visibility = View.GONE
             }
-            else {
+
+            override fun onSuccess(result: JSONObject?) {
+                progress.visibility = View.GONE
                 progress.visibility = View.VISIBLE
                 mainHandler.post(updateTextTask)
-                yourCountDownTimer = object : CountDownTimer(60000, 1000) {
+                yourCountDownTimer = object : CountDownTimer(120000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
 
                     }
-
                     override fun onFinish() {
                         info.visibility = View.VISIBLE
                         progress.visibility = View.GONE
                         info.text =
-                            "Payment seems not to have been Received, Try Again \n If you made Payment please Call 073XXXX for assistance."
-                        btnMakePayment.text = "Proceed"
+                            "Payment seems not to have been Received, Try Again \n If you made Payment please Call 0722 338 476 for assistance."
+                        btnMakePayment.text = "Try Again"
                         btnMakePayment.isEnabled = true
                         mainHandler.removeCallbacks(updateTextTask)
                     }
                 }.start()
-                Toast.makeText(applicationContext, "${it.userMsg}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, result.toString(), Toast.LENGTH_SHORT).show()
+                if(result.toString() == "null"){
+                    Toast.makeText(applicationContext, "Please try Again After 1 minute, Thank you. ", Toast.LENGTH_SHORT).show()
+                    btnMakePayment.text = "Try Again"
+                    btnMakePayment.isEnabled = true
+                    mainHandler.removeCallbacks(updateTextTask)
+                }
             }
-        }
+
+            override fun onFailure(result: String?) {
+                progress.visibility = View.GONE
+                btnMakePayment.text = "Try Again"
+                btnMakePayment.isEnabled = true
+                Toast.makeText(applicationContext, "Error Occurred!! "+result.toString(),
+                    Toast.LENGTH_SHORT).show()
+                if(result.toString() == "null"){
+                    Toast.makeText(applicationContext, "Please try Again After 1 minute, Thank you. ", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+//        apiService.paymentUser(userInfo) {
+//            progress.visibility = View.GONE
+//            btnMakePayment.text = "....Payment in Progress\n May take upto 2 minutes"
+//            if(it == null){
+//                Toast.makeText(applicationContext, "Connection Error, Please Check2.", Toast.LENGTH_LONG).show()
+//                btnMakePayment.text = "Proceed"
+//                btnMakePayment.isEnabled = true
+//            }
+//            else {
+//                progress.visibility = View.VISIBLE
+//                mainHandler.post(updateTextTask)
+//                yourCountDownTimer = object : CountDownTimer(120000, 1000) {
+//                    override fun onTick(millisUntilFinished: Long) {
+//
+//                    }
+//
+//                    override fun onFinish() {
+//                        info.visibility = View.VISIBLE
+//                        progress.visibility = View.GONE
+//                        info.text =
+//                            "Payment seems not to have been Received, Try Again \n If you made Payment please Call 0722 338 476 for assistance."
+//                        btnMakePayment.text = "Proceed"
+//                        btnMakePayment.isEnabled = true
+//                        mainHandler.removeCallbacks(updateTextTask)
+//                    }
+//                }.start()
+//                Toast.makeText(applicationContext, "${it.userMsg}", Toast.LENGTH_SHORT).show()
+//            }
+//        }
     }
 
 
     val updateTextTask = object : Runnable {
         override fun run() {
             checkPayWait()
-            mainHandler.postDelayed(this, 3000)
+            mainHandler.postDelayed(this, 5000)
         }
     }
 
@@ -215,8 +258,11 @@ class PaymentActivity : AppCompatActivity() {
             if(it == null){
                 //Toast.makeText(applicationContext, "Connection Error, Please Check.Try Again", Toast.LENGTH_SHORT).show()
                 //yourCountDownTimer.cancel()
-                //mainHandler.removeCallbacks(updateTextTask)
+                //mainHandler.removeCall117.60backs(updateTextTask)
             }
+
+
+
 
             else if(it.userMsg == "Subscribed"){
                 yourCountDownTimer.cancel()
@@ -230,4 +276,5 @@ class PaymentActivity : AppCompatActivity() {
             }
         }
     }
+
 }

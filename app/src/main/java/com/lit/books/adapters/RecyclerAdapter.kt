@@ -40,7 +40,7 @@ class RecyclerAdapter(var context: Context)://When you want to toast smthg witho
         tvBooks.text = item.book_name
         val typeface = ResourcesCompat.getFont(context, R.font.montserrat)
         tvBooks.typeface = typeface
-        Glide.with(context).load("https://hudumazetu.com/piks/"+item.book_image)
+        Glide.with(context).load("https://coding.co.ke/piks/"+item.book_image)
             .apply(RequestOptions().centerCrop().placeholder(R.drawable.placeholder))
             .into(ivBooks)
 
@@ -58,6 +58,7 @@ class RecyclerAdapter(var context: Context)://When you want to toast smthg witho
                 editor.putString("product_cost", item.book_publisher)
                 editor.putString("image_url", item.book_image)
                 editor.putString("book_id", item.book_id)
+                editor.putString("book_cost", item.book_cost)
                 editor.apply()
 
                 if(item.book_id == "5"){

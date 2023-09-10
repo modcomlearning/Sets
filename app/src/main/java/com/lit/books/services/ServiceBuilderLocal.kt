@@ -12,7 +12,7 @@ object ServiceBuilderLocal {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://coding.co.ke/sets/")
+        .baseUrl("https://coding.co.ke/digitich/")
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()

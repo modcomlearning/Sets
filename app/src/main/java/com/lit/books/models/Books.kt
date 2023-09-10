@@ -7,5 +7,6 @@ class Books (
     var book_author: String = "" ,
     var book_publisher: String = "",
     var book_edition:String = "",
-    var book_image: String = ""
+    var book_image: String = "",
+    var book_cost: String = ""
 )

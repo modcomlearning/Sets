@@ -10,6 +10,16 @@ interface RestApi {
     @POST("login")
     fun userLogin(@Body userData: UserInfo): Call<LoginResp>
 
+    @Headers("Content-Type: application/json")
+    @POST("send_otp")
+    fun userForgot(@Body userData: Forgot): Call<LoginResp>
+
+
+    @Headers("Content-Type: application/json")
+    @POST("forgot")
+    fun userChange(@Body userData: ForgotChange): Call<LoginResp>
+
+
     @POST("register")
     fun userRegister(@Body userData: UserInfoSignUp): Call<SignUpResp>
 

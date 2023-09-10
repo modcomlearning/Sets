@@ -144,8 +144,5 @@ class BookActivities : AppCompatActivity() {
             // that data has changed in recycler view.
             recyclerAdapter.notifyDataSetChanged()
         }
-
-
-
     }
 }

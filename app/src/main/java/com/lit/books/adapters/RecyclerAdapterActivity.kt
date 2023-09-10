@@ -38,7 +38,7 @@ class RecyclerAdapterActivity(var context: Context)://When you want to toast smt
         tvActivityName.text = item.activity_name
         val typeface = ResourcesCompat.getFont(context, R.font.montserrat)
         tvActivityName.typeface = typeface
-        Glide.with(context).load("https://hudumazetu.com/piks/"+item.image_url)
+        Glide.with(context).load("https://coding.co.ke/piks/"+item.image_url)
             .apply(RequestOptions().centerCrop().placeholder(R.drawable.placeholder))
             .into(ivActivity)
 
@@ -58,12 +58,6 @@ class RecyclerAdapterActivity(var context: Context)://When you want to toast smt
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(i)
         }
-
-
-
-
-
-
     }
     override fun getItemCount(): Int {
         return productList.size

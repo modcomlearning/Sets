@@ -19,7 +19,6 @@ class VideoPlayering : AppCompatActivity() {
     // on below line we are creating
     // a variable for our video url.
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_playering)
@@ -70,9 +69,11 @@ class VideoPlayering : AppCompatActivity() {
         videoView.setOnPreparedListener(OnPreparedListener {
             progress.visibility = View.GONE
             videoView.start()
+            idTVHeading.visibility = View.GONE
         })
 
         videoView.setOnErrorListener(MediaPlayer.OnErrorListener { mp, what, extra -> // do something when an error is occur during the video playback
+            idTVHeading.visibility = View.GONE
             Toast.makeText(applicationContext, "Error Occurred, Check Your Connections", Toast.LENGTH_SHORT).show()
             false
         })

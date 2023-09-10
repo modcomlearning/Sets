@@ -28,7 +28,7 @@ object ServiceBuilder {
 
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://coding.co.ke/sets/") // change this IP for testing by your actual machine IP
+        .baseUrl("https://coding.co.ke/digitich/") // change this IP for testing by your actual machine IP
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()

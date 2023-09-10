@@ -13,13 +13,19 @@
         android:theme="@style/Theme.Books"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".VideoPlayering"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".OTPCheck"
             android:exported="false" />
-         <activity
-         android:name=".BookActivities"
-         android:exported="false" />
+        <activity
+            android:name=".Forgot"
+            android:exported="false" />
+        <activity
+            android:name=".VideoPlayering"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".BookActivities"
+            android:exported="false" />
         <activity
             android:name=".PaymentActivity"
             android:exported="false"
@@ -41,7 +47,6 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

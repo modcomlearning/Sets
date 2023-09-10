@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivity = this
-
         val prefs = getSharedPreferences("storage", MODE_PRIVATE)
         val emailP = prefs.getString("email", "")
         val passwordP = prefs.getString("password", "")
@@ -41,10 +40,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             //finish()
         }
+
+        forgot.setOnClickListener {
+            //Toast.makeText(applicationContext, "Coming Soon!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(applicationContext, Forgot::class.java)
+            startActivity(intent)
+            //finish()
+        }
     }//end
-
-
-
 
     fun loginDummyUser(email: String, password: String) {
         //progress.progressTintList(ColorStateList.valueOf(Color.RED))

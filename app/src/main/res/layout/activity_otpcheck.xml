@@ -13,7 +13,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In to Make Payment"
+            android:text="Change PIN"
             android:textColor="@color/mybutton1"
             android:padding="20dp"
             android:textSize="15sp"
@@ -23,30 +23,44 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hintEmail"
+            android:hint="Enter OTP Received"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/email"
+                android:id="@+id/otp"
+                android:maxLength="5"
                 android:inputType="textEmailAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hintPassword"
+            android:hint="Enter New Pin"
             android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/password"
+                android:id="@+id/pin1"
                 android:maxLength="4"
                 android:inputType="numberPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm New Pin"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pin2"
+                android:maxLength="4"
+                android:inputType="numberPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar
             android:layout_width="match_parent"
@@ -58,35 +72,13 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/loginButtonText"
+            android:text="Change"
             android:backgroundTint="@color/mybutton1"/>
 
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create a Free Account"
-            android:textColor="@color/mybutton1"
-            android:padding="20dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:id="@+id/freeaccount"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Forgot Your PIN?"
-            android:textColor="@color/mybutton1"
-            android:padding="20dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:id="@+id/forgot"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -101,7 +101,6 @@ class HomeFragment : Fragment() {
                 pull.visibility = View.VISIBLE
                 recyclerView.adapter = recyclerAdapter
             }
-
             else {
                 pull.visibility = View.VISIBLE
                 noservices.visibility = View.GONE
@@ -133,7 +132,7 @@ class HomeFragment : Fragment() {
             // on below line we are shuffling our list using random
             apiService.books(){
                 if(it == null){
-                    Toast.makeText(requireContext(), "Connection Error, Please Check, Reload App", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Connection Error, Please Check, Reload App1", Toast.LENGTH_SHORT).show()
                     noservices.visibility = View.VISIBLE
                     noservices.text = "No Connection. "
                     progressbar.visibility = View.GONE

@@ -42,7 +42,7 @@ class SingleActivity : AppCompatActivity() {
         //access the saved image from prefferences and put in the ImageView Using Glide
         val image_url = prefs.getString("image_url", "")
         val image = findViewById<ImageView>(R.id.img_url)
-        Glide.with(applicationContext).load("https://hudumazetu.com/piks/$image_url")
+        Glide.with(applicationContext).load("https://coding.co.ke/piks/$image_url")
             .apply(RequestOptions().centerCrop().placeholder(R.drawable.placeholder))
             .into(image)
 
